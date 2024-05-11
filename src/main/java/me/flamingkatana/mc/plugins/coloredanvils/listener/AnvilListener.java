@@ -2,7 +2,6 @@ package me.flamingkatana.mc.plugins.coloredanvils.listener;
 
 import me.flamingkatana.mc.plugins.coloredanvils.ColoredAnvils;
 import me.flamingkatana.mc.plugins.coloredanvils.constant.AnvilConstants;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
@@ -52,12 +51,9 @@ public class AnvilListener implements Listener {
             return;
         }
         HumanEntity humanEntity = event.getWhoClicked();
-        foundIllegalWords.forEach(illegalWord ->
-                humanEntity.sendMessage(ChatColor.RED + ColoredAnvils.nameFilter().getFilterMessage() + "'" + ChatColor.BOLD + illegalWord + ChatColor.RED + "'.")
-        );
+        foundIllegalWords.forEach(illegalWord -> humanEntity.sendMessage(ColoredAnvils.nameFilter().createFilterMessage(illegalWord)));
         event.setCancelled(true);
-        if (humanEntity instanceof Player) {
-            Player player = (Player) humanEntity;
+        if (humanEntity instanceof Player player) {
             player.setExp(player.getExp()); // Cancelling the event will still visually take the player's EXP - this corrects it
         }
         inventory.setItem(AnvilConstants.OUTPUT_SLOT, new ItemStack(Material.AIR)); // Clients will not see the output slot clear without this

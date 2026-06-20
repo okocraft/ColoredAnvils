@@ -1,10 +1,10 @@
 package me.flamingkatana.mc.plugins.coloredanvils;
 
+import io.papermc.paper.plugin.configuration.PluginMeta;
 import me.flamingkatana.mc.plugins.coloredanvils.item.ItemColorTranslator;
 import me.flamingkatana.mc.plugins.coloredanvils.item.NameFilter;
 import me.flamingkatana.mc.plugins.coloredanvils.item.PermissionValidator;
 import me.flamingkatana.mc.plugins.coloredanvils.listener.AnvilListener;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
@@ -34,14 +34,14 @@ public final class ColoredAnvils extends JavaPlugin {
     }
 
     private void enableMessage() {
-        PluginDescriptionFile pdfFile = this.getDescription();
-        getLogger().info(pdfFile.getName() + " v" + pdfFile.getVersion() + " has been enabled!");
+        PluginMeta meta = this.getPluginMeta();
+        getLogger().info(meta.getName() + " v" + meta.getVersion() + " has been enabled!");
         getLogger().info(getPlugin().getServer().getVersion() + "   " + getPlugin().getServer().getBukkitVersion());
     }
 
     private void disableMessage() {
-        PluginDescriptionFile pdfFile = this.getDescription();
-        getLogger().info(pdfFile.getName() + " v" + pdfFile.getVersion() + " has been disabled!");
+        PluginMeta meta = this.getPluginMeta();
+        getLogger().info(meta.getName() + " v" + meta.getVersion() + " has been disabled!");
     }
 
     private void registerEvents() {

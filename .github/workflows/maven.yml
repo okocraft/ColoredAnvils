@@ -1,0 +1,9 @@
+name: Java CI
+on: [ push, pull_request ]
+
+jobs:
+  build-java-25:
+    uses: okocraft/workflows/.github/workflows/maven.yml@v1
+    with:
+      java-version: '25'
+      package-name: ColoredAnvil-Build-${{ github.run_number }}
